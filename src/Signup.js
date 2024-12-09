@@ -1,31 +1,24 @@
 import { useState } from "react";
 import Logo from "./Components/Logo";
-import "./Login.css";
-import "./index.css";
+import "./Signup.css";
+function Signup() {
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [pwd, setPwd] = useState();
 
-
-function Login() {
-  const [name, setName] = useState("");
-  const [pwd, setPwd] = useState("");
-  const [userdata, setuserData] = useState({});
-
-
-
-  function handleLogin() {
+  const [signupData, setSignupdata] = useState({});
+  function handleSignup() {
     const data = {
       name: name,
+      email: email,
       password: pwd,
     };
-
-    setuserData(data);
-    console.log(data);
+    setSignupdata(data);
   }
 
-  function signupForm(){
-   window.location.href="/signup"
-
+  function LoginForm() {
+    window.location.href = "/login";
   }
-
   return (
     <div className="row">
       <Logo />
@@ -33,9 +26,8 @@ function Login() {
       <div className="column2">
         <div className="form-container">
           <center>
-            <h3>Login Form</h3>
+            <h3>Signup Form</h3>
           </center>
-
           <div className="input-box">
             <input
               type="text"
@@ -43,6 +35,15 @@ function Login() {
               placeholder="User Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className="input-box">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -55,25 +56,30 @@ function Login() {
               onChange={(e) => setPwd(e.target.value)}
             />
           </div>
-          <p>Forget password?</p>
+          <p>Login, if already registered.!</p>
 
           <button
             type="button"
             className="login-button"
-            onClick={(e) => handleLogin(e)}
+            onClick={(e) => LoginForm()}
           >
             Login
           </button>
-          <button type="button" className="signup-button" onClick={e=>signupForm()} >
+          <button
+            type="button"
+            className="signup-button"
+            onClick={(e) => handleSignup()}
+          >
             SIgnup
           </button>
           <div>
-            <h2>{userdata.name}</h2>
-            <h2>{userdata.password}</h2>
+            <h4>{signupData.name}</h4>
+            <h4>{signupData.email}</h4>
+            <h4>{signupData.password}</h4>
           </div>
         </div>
       </div>
     </div>
   );
 }
-export default Login;
+export default Signup;
