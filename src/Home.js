@@ -1,14 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./home.css";
 
 function Home() {
-  useEffect(() => {
+
+    const[data,setData]=useState([])
+
+    useEffect(() => {
 
     async function fetchApidata() {
-      const response =await fetch("https://jsonplaceholder.typicode.com/todos");
-      const apidata = response.json();
-      console.log(apidata);
+     
+    try{
+        const response =await fetch("https://jsonplaceholder.typicode.com/todos/");
+        const apidata = await response.json();
+        setData(apidata)
+
+    }catch(err){
+
+        console.log(err)
     }
+   }
     fetchApidata()
 
   },[]);
@@ -17,7 +27,25 @@ function Home() {
     <div>
       <center>
         <h2>Home</h2>
-      </center>
+       
+            
+          <table>    
+          <tr>
+            <th>Userid</th>
+            <th>title</th>
+           </tr>
+          {
+          data.map(data=>(
+            
+                <tr>
+                  <td>{data.id}</td>
+                  <td>{data.title}</td>
+                </tr>
+               ))
+              }
+            </table>
+            </center>
+       
     </div>
   );
 }

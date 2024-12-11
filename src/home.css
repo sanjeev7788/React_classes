@@ -1,3 +1,16 @@
 h2{
     color: white;
 }
+.id,.title{
+    color: antiquewhite;
+}
+table{
+    width: 50%;
+    border-collapse: collapse;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+    color: aliceblue;
+  }
